@@ -21,8 +21,9 @@ conda install -c conda-forge --file requirements.txt
 - Clone the repository
 - Run the app.py module using the following command.
 ```bash
-streamlit run app.py
+python app.py
 ```
+- Enter any valid customer id from the attached online retail dataset and check the results.
 
 
 
