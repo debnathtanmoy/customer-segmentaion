@@ -23,7 +23,8 @@ conda install -c conda-forge --file requirements.txt
 ```bash
 python app.py
 ```
-- Enter any valid customer id from the attached online retail dataset and check the results.
+- Enter any valid customer id from the attached online retail dataset and check the results. Some valid customer id's to try
+  out the application are 16029,16098 and 14688.
 
 
 
