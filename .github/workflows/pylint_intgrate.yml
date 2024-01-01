@@ -1,0 +1,46 @@
+
+name: "sonar_cloud_scan_github_actions"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  DemoSonarCloudSCan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+            GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+              -Dsonar.organization=debnathtanmoy
+              -Dsonar.projectKey=customer-segmentaion
+              -Dsonar.branch.name=main
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install pylint pytest pytest-cov
+
+      - name: Run PyLint and generate report
+        run: |
+          pylint --output-format=text --rcfile=.pylintrc --fail-under=9 ./**/*.py > pylint_coverage.txt || echo "FAILED"
+
+      - name: View pylint report
+        run: cat pylint_coverage.txt
+
+      - name: Run Pytest with coverage
+        run: |
+          pytest --cov .
