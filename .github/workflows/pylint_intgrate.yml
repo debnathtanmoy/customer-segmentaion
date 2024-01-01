@@ -20,12 +20,6 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
             SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-          args: >
-              -Dsonar.organization=debnathtanmoy
-              -Dsonar.projectKey=customer-segmentaion
-              -Dsonar.branch.name=main
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
