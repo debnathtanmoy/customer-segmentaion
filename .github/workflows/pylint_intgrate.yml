@@ -13,12 +13,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
+          
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -45,5 +40,5 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.tests=.
             -Dsonar.test.inclusions=**/*_test.py
-            -Dsonar.python.pylint.reportPath=pylint_coverage.txt
+            -Dsonar.python.pylint.reportPaths=pylint_coverage.txt
             -Dsonar.python.coverage.reportPaths=coverage.xml
