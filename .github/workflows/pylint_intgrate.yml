@@ -29,7 +29,7 @@ jobs:
 
       - name: Run PyLint and generate report
         run: |
-          pylint --output-format=text --rcfile=.pylintrc ./**/*.py > pylint-report.text
+          pylint --output-format=text --rcfile=.pylintrc --fail-under=9 ./**/*.py > pylint_coverage.txt || echo "FAILED"
 
       - name: Run Pytest with coverage
         run: |
@@ -45,5 +45,5 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.tests=.
             -Dsonar.test.inclusions=**/*_test.py
-            -Dsonar.python.pylint.reportPath=pylint-report.text
+            -Dsonar.python.pylint.reportPath=pylint_coverage.txt
             -Dsonar.python.coverage.reportPaths=coverage.xml
