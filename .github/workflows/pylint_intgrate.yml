@@ -11,25 +11,14 @@ jobs:
   DemoSonarCloudSCan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
             fetch-depth: 0
 
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-            java-version: '17'
-            distribution: 'adopt'
-      
-      - name: something
-        run: mvn sonar:sonar --illegal-access=permit
-
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
+      - uses: sonarsource/sonarqube-scan-action@master
         env:
-            GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
