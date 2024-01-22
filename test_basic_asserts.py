@@ -9,19 +9,6 @@ class TestAsserts:
         y = 5 + 5
         assert x == y  # Assertion passes
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     def test_assert_notttttttt_equal(self):
         x = 10
         y = 5
